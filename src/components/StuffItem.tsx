@@ -1,3 +1,8 @@
+'use client';
+
+import { Button } from 'react-bootstrap';
+import { Trash } from 'react-bootstrap-icons';
+import { deleteStuff } from '@/lib/dbActions';
 import { Stuff } from '@prisma/client';
 import Link from 'next/link';
 
@@ -9,6 +14,11 @@ const StuffItem = ({ name, quantity, condition, id }: Stuff) => (
     <td>{condition}</td>
     <td>
       <Link href={`/edit/${id}`}>Edit</Link>
+    </td>
+    <td>
+      <Button variant="danger" onClick={() => deleteStuff(id)}>
+        <Trash />
+      </Button>
     </td>
   </tr>
 );
